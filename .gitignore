@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+# But not these essential files
+!index.html
+!hero-bg.jpg
+!67dd352c34b4bd77e6db5d2c_relume-76854.png
+!.gitignore
+!README.md

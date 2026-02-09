@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Fitness Center Drensteinfurt | Dein High-End Studio</title>
+    <meta name="description"
+        content="Erreiche deine Fitnessziele im Fitness Center Drensteinfurt. Milon Zirkel, Krafttraining, Kurse und Wellness in modernster Cyberpunk-Atmosphäre. Jetzt Probetraining vereinbaren!" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00b0f0",
+                        "accent-pink": "#E6007E",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#000000",
+                        "surface-dark": "#0a0a0a",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'cyber-grid': "linear-gradient(rgba(0, 176, 240, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 176, 240, 0.05) 1px, transparent 1px)",
+                    },
+                    boxShadow: {
+                        'neon-blue': '0 0 10px rgba(0, 176, 240, 0.5), 0 0 20px rgba(0, 176, 240, 0.3)',
+                        'neon-pink': '0 0 10px rgba(230, 0, 126, 0.5), 0 0 20px rgba(230, 0, 126, 0.3)',
+                    },
+                    animation: {
+                        'gradient': 'gradient 8s linear infinite',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for cyberpunk feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00b0f0;
+        }
+
+        .text-stroke-1 {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Intro Overlay & Terminal Animations */
+        #intro-overlay {
+            background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+        }
+
+        .terminal-line {
+            display: block;
+            margin-bottom: 0.25rem;
+            opacity: 0.8;
+        }
+
+        .terminal-line.success {
+            color: #E6007E;
+            text-shadow: 0 0 10px rgba(230, 0, 126, 0.8);
+        }
+
+        .scanline {
+            box-shadow: 0 0 15px rgba(0, 176, 240, 0.5);
+            z-index: 1001;
+            will-change: top;
+        }
+
+        #hero-aura,
+        .hero-hud,
+        .navbar-container,
+        .hero-content {
+            will-change: transform, opacity;
+            pointer-events: none;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .bg-300\% {
+            background-size: 300% 300%;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #fff 0%, #00b0f0 10%, #fff 20%);
+            background-size: 200% auto;
+            color: white;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes glow-pulse {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 5px rgba(0, 176, 240, 0.4));
+                opacity: 0.8;
+            }
+
+            50% {
+                filter: drop-shadow(0 0 20px rgba(0, 176, 240, 0.8));
+                opacity: 1;
+            }
+        }
+
+        /* Retro Neon Silhouette Keyframes */
+        @keyframes color-spin {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 5px rgba(0, 176, 240, 0.8)) drop-shadow(0 0 15px rgba(230, 0, 126, 0.5));
+                transform: scale(1.02);
+            }
+
+            50% {
+                filter: drop-shadow(0 0 15px rgba(0, 176, 240, 1)) drop-shadow(0 0 30px rgba(230, 0, 126, 0.8));
+                transform: scale(1.03);
+            }
+        }
+
+        @keyframes echo-pulse {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1.02);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: scale(1.03);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white font-display overflow-x-hidden selection:bg-accent-pink selection:text-white">
+    <!-- --- INTRO OVERLAY --- -->
+
+    <!-- PRELOAD HERO IMAGE to avoid flicker -->
+    <link rel="preload" as="image" href="./hero-bg.jpg">
+    <div id="intro-overlay"
+        class="fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center font-display overflow-hidden">
+        <!-- Background Noise -->
+        <div
+            class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')]">
+        </div>
+
+        <!-- Kinetic Type Container -->
+        <div class="kinetic-container relative flex flex-col items-center justify-center pointer-events-none">
+            <h1
+                class="kinetic-text absolute opacity-0 text-[12vw] font-black tracking-tighter uppercase text-stroke-1 text-white/20 whitespace-nowrap">
+                Power</h1>
+            <h1
+                class="kinetic-text absolute opacity-0 text-[12vw] font-black tracking-tighter uppercase text-primary whitespace-nowrap">
+                Precision</h1>
+            <h1
+                class="kinetic-text absolute opacity-0 text-[12vw] font-black tracking-tighter uppercase text-accent-pink whitespace-nowrap">
+                Performance</h1>
+        </div>
+
+        <!-- Final Logo Landing -->
+        <div id="intro-logo-container" class="absolute opacity-0 scale-75 blur-md">
+            <img src="./67dd352c34b4bd77e6db5d2c_relume-76854.png" alt="Logo"
+                class="h-32 md:h-48 drop-shadow-[0_0_30px_rgba(0,176,240,0.5)]">
+        </div>
+
+        <!-- Progress Indicator (Minimalist) -->
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-48 h-[1px] bg-white/10 overflow-hidden">
+            <div id="intro-progress" class="w-0 h-full bg-primary/50"></div>
+        </div>
+    </div>
+    <!-- Navigation -->
+    <div class="navbar-container sticky top-0 z-50 w-full border-b border-white/10 bg-black/80 backdrop-blur-md">
+        <div class="flex h-20 items-center justify-between px-6 lg:px-12 max-w-[1400px] mx-auto">
+            <!-- Logo Wrapper with fixed width to reserve space -->
+            <div class="relative w-40 h-full flex items-center z-50">
+                <!-- Absolute positioned logo that overflows the container -->
+                <img src="./67dd352c34b4bd77e6db5d2c_relume-76854.png" alt="Fitness Center Drensteinfurt Logo"
+                    class="absolute top-4 left-0 h-32 w-auto max-w-none object-contain drop-shadow-[0_0_15px_rgba(0,176,240,0.5)]">
+            </div>
+            <nav class="hidden lg:flex items-center gap-10">
+                <a class="nav-link relative text-white hover:text-primary transition-colors text-sm font-bold tracking-wider uppercase group py-2"
+                    href="#">
+                    Start
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full shadow-[0_0_10px_rgba(0,176,240,0.8)]"></span>
+                </a>
+                <a class="nav-link relative text-white hover:text-primary transition-colors text-sm font-bold tracking-wider uppercase group py-2"
+                    href="#">
+                    Studio
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full shadow-[0_0_10px_rgba(0,176,240,0.8)]"></span>
+                </a>
+                <a class="nav-link relative text-white hover:text-primary transition-colors text-sm font-bold tracking-wider uppercase group py-2"
+                    href="#">
+                    Kursplan
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full shadow-[0_0_10px_rgba(0,176,240,0.8)]"></span>
+                </a>
+                <a class="nav-link relative text-white hover:text-primary transition-colors text-sm font-bold tracking-wider uppercase group py-2"
+                    href="#">
+                    Preise
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full shadow-[0_0_10px_rgba(0,176,240,0.8)]"></span>
+                </a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button style="--btn-bg: #00b0f0; --btn-hover-bg: #fff; --glow: #fff; --text: #000; --text-hover: #000;"
+                    class="btn-cyber hidden sm:flex items-center justify-center h-10 px-6 rounded-sm skew-x-[-10deg] shadow-neon-blue group">
+                    <span class="relative z-10 skew-x-[10deg] text-sm font-bold tracking-wider uppercase">Zum
+                        Probetraining</span>
+                </button>
+                <button class="lg:hidden text-white" aria-label="Menü öffnen">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Section -->
+    <div class="relative w-full min-h-[90vh] flex flex-col justify-center overflow-hidden">
+        <!-- Background with Overlay -->
+        <div class="absolute inset-0 z-0 bg-black">
+            <!-- 1. RETRO ECHO LAYERS (RGB Split Highlight) -->
+            <div class="hero-echo-cyan absolute inset-0 bg-cover bg-center bg-no-repeat opacity-0 z-[5] mix-blend-screen"
+                style="background-image: url('./hero-bg.jpg'); filter: hue-rotate(180deg) brightness(1.5) blur(4px); transform: translateX(-10px) scale(1.02);">
+            </div>
+            <div class="hero-echo-pink absolute inset-0 bg-cover bg-center bg-no-repeat opacity-0 z-[5] mix-blend-screen"
+                style="background-image: url('./hero-bg.jpg'); filter: hue-rotate(300deg) brightness(1.5) blur(4px); transform: translateX(10px) scale(1.02);">
+            </div>
+
+            <!-- 2. BASE IMAGE LAYER (Visible & Strong) -->
+            <div class="hero-bg-image absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80 z-10"
+                style="background-image: url('./hero-bg.jpg');"></div>
+
+            <!-- 3. GRADIENT OVERLAY (For readability) -->
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent z-20"></div>
+
+            <!-- Tech Grid Overlay -->
+            <div class="absolute inset-0 bg-cyber-grid bg-[length:40px_40px] opacity-20 z-0 pointer-events-none">
+            </div>
+            <!-- Dynamic Cyber Aura -->
+            <canvas id="hero-aura" class="absolute inset-0 z-0 pointer-events-none opacity-40"></canvas>
+        </div>
+        <div
+            class="relative z-20 w-full max-w-[1400px] mx-auto px-6 lg:px-12 py-20 grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Column: Content -->
+            <div class="hero-content flex flex-col gap-8 max-w-2xl">
+
+                <h1 class="text-5xl lg:text-7xl font-black mb-6 tracking-tighter leading-none uppercase">
+                    DEINE MISSION:<br>
+                    <span
+                        class="inline-block w-[280px] lg:w-[420px] overflow-hidden whitespace-nowrap align-baseline text-left pt-4 pb-1">
+                        <span id="glitch-target"
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary bg-300% animate-gradient">STÄRKER</span>
+                    </span>
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary bg-300% animate-gradient">WERDEN</span>
+                </h1>
+                <p
+                    class="text-gray-400 text-lg sm:text-xl font-normal max-w-lg leading-relaxed border-l-2 border-white/20 pl-6">
+                    Erreiche deine Fitnessziele mit unserem professionellen Training. Next-Level Equipment für
+                    Next-Level Performance.
+                </p>
+                <div class="flex flex-wrap gap-4 mt-4">
+                    <button
+                        style="--btn-bg: #00b0f0; --btn-hover-bg: #fff; --glow: #fff; --text: #000; --text-hover: #000;"
+                        class="btn-cyber relative h-14 px-8 shadow-neon-blue rounded-sm skew-x-[-10deg] group z-10">
+                        <span
+                            class="relative z-10 block skew-x-[10deg] font-black text-base tracking-wider uppercase">Zum
+                            Probetraining</span>
+                    </button>
+                    <button
+                        style="--btn-bg: #000; --btn-hover-bg: rgba(230, 0, 126, 0.2); --glow: #E6007E; --text: #E6007E; --text-hover: #fff;"
+                        class="btn-cyber relative h-14 px-8 border border-accent-pink/50 rounded-sm skew-x-[-10deg] group">
+                        <span
+                            class="relative z-10 block skew-x-[10deg] flex items-center gap-2 font-black text-base tracking-wider uppercase">
+                            Kursplan
+                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <!-- Right Column: HUD / Info Panel -->
+            <div class="flex justify-start lg:justify-end">
+                <div class="hero-hud animated-border relative w-full max-w-md bg-black p-1 rounded-2xl group">
+                    <div class="bg-surface-dark/90 p-8 rounded-xl relative overflow-hidden">
+                        <!-- Scanline effect -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-b from-transparent via-white/2 to-transparent h-full w-full animate-[scan_4s_linear_infinite] pointer-events-none">
+                        </div>
+                        <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+                            <h3 class="text-white text-xl font-bold uppercase tracking-widest flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">schedule</span>
+                                Öffnungszeiten
+                            </h3>
+                        </div>
+                        <div class="space-y-6 font-mono text-sm">
+                            <div
+                                class="flex justify-between items-center group/item hover:bg-white/5 p-2 rounded transition-colors border-l-2 border-transparent hover:border-primary">
+                                <span class="text-gray-400 uppercase tracking-widest text-sm font-bold">MO - FR</span>
+                                <span class="text-white font-bold text-lg tracking-wider text-shadow-glow">08:00 -
+                                    22:00 Uhr</span>
+                            </div>
+                            <div
+                                class="flex justify-between items-center group/item hover:bg-white/5 p-2 rounded transition-colors border-l-2 border-transparent hover:border-primary">
+                                <span class="text-gray-400 uppercase tracking-widest text-sm font-bold">SA & SO</span>
+                                <span class="text-white font-bold text-lg tracking-wider text-shadow-glow">10:00 -
+                                    18:00 Uhr</span>
+                            </div>
+                            <div
+                                class="flex justify-between items-center group/item hover:bg-white/5 p-2 rounded transition-colors border-l-2 border-transparent hover:border-accent-pink">
+                                <span
+                                    class="text-accent-pink uppercase tracking-widest text-sm font-bold">Feiertage</span>
+                                <span class="text-white font-bold text-lg tracking-wider text-shadow-glow">10:00 -
+                                    16:00 Uhr</span>
+                            </div>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/10 flex items-center gap-3">
+                            <div id="status-indicator"
+                                class="size-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.8)]">
+                            </div>
+                            <span id="status-text"
+                                class="text-xs text-green-400 uppercase tracking-widest font-bold">Gym ist
+                                geöffnet</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Simple -->
+
+    <!-- STUDIO SECTION -->
+    <section id="studio" class="relative w-full py-32 bg-black overflow-hidden border-t border-white/10">
+        <!-- Background Grid -->
+        <div class="absolute inset-0 pointer-events-none opacity-20"
+            style="background-image: linear-gradient(#1a1a1a 1px, transparent 1px), linear-gradient(90deg, #1a1a1a 1px, transparent 1px); background-size: 40px 40px;">
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6">
+            <!-- Header -->
+            <div class="text-center mb-20">
+                <div class="inline-block border border-[#E6007E] px-4 py-1 skew-x-[-10deg] mb-6">
+                    <span class="block skew-x-[10deg] text-[#E6007E] font-mono text-sm tracking-widest uppercase">
+                        // SECTOR: TRAINING_GROUNDS
+                    </span>
+                </div>
+                <h2 class="text-5xl md:text-7xl font-bold font-heading text-white mb-6 uppercase tracking-tighter">
+                    DAS STUDIO
+                </h2>
+                <p class="max-w-2xl mx-auto text-xl text-gray-400 font-light leading-relaxed">
+                    Mach dir selbst ein Bild von unserem Studio und lass dich von den Impressionen inspirieren.
+                    <span class="text-[#00b0f0]">High-End Equipment</span> trifft auf <span class="text-[#E6007E]">pure
+                        Atmosphäre</span>.
+                </p>
+            </div>
+
+            <!-- Tech Grid Logic -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
+
+                <!-- Card 1: Milon Circle (Featured) -->
+                <div
+                    class="group relative h-full w-full overflow-hidden border border-white/10 bg-white/5 md:col-span-2">
+                    <img src="https://cdn.prod.website-files.com/67dd34afb8ffae63ccf1f97a/681b6573d90935f3bb238fd3_20250429_110953.jpg"
+                        alt="Milon Zirkel Trainingsbereich im Fitness Center Drensteinfurt" loading="lazy"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale transition-all duration-700 ease-out group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105">
+
+                    <!-- Overlay & Tech UI -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 transition-opacity group-hover:opacity-60">
+                    </div>
+                    <div
+                        class="absolute top-4 left-4 w-2 h-2 bg-[#00b0f0] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                    <div
+                        class="absolute top-4 right-4 text-xs font-mono text-[#00b0f0] opacity-0 group-hover:opacity-100 transition-opacity delay-100">
+                        CAM_01 [MILON]
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 border-t border-white/10 bg-black/40 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                        <h3 class="text-2xl font-bold text-white uppercase tracking-wider mb-1">Milon Zirkel</h3>
+                        <p class="text-xs font-mono text-[#00b0f0]">/// EFFICIENCY: MAXIMIZED</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Cardio Area -->
+                <div class="group relative h-full w-full overflow-hidden border border-white/10 bg-white/5">
+                    <img src="https://cdn.prod.website-files.com/67dd34afb8ffae63ccf1f97a/681b65d999b2aee6ed100eb5_20250429_112115.jpg"
+                        alt="Moderner Cardio-Bereich" loading="lazy"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale transition-all duration-700 ease-out group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 transition-opacity group-hover:opacity-60">
+                    </div>
+                    <div
+                        class="absolute top-4 left-4 w-2 h-2 bg-[#00b0f0] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                    <div
+                        class="absolute top-4 right-4 text-xs font-mono text-[#00b0f0] opacity-0 group-hover:opacity-100 transition-opacity delay-100">
+                        CAM_02 [CARDIO]
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 border-t border-white/10 bg-black/40 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                        <h3 class="text-xl font-bold text-white uppercase tracking-wider mb-1">Cardio Zone</h3>
+                        <p class="text-xs font-mono text-[#00b0f0]">/// ENDURANCE: INFINITE</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Free Weights (Corrected Image) -->
+                <div class="group relative h-full w-full overflow-hidden border border-white/10 bg-white/5">
+                    <img src="https://cdn.prod.website-files.com/67dd34afb8ffae63ccf1f97a/681b7037d29f2e5486069b2c_20250429_114306.jpg"
+                        alt="Professioneller Freihantelbereich" loading="lazy"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale transition-all duration-700 ease-out group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 transition-opacity group-hover:opacity-60">
+                    </div>
+                    <div
+                        class="absolute top-4 left-4 w-2 h-2 bg-[#E6007E] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                    <div
+                        class="absolute top-4 right-4 text-xs font-mono text-[#E6007E] opacity-0 group-hover:opacity-100 transition-opacity delay-100">
+                        CAM_03 [FREE_WEIGHTS]
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 border-t border-white/10 bg-black/40 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                        <h3 class="text-xl font-bold text-white uppercase tracking-wider mb-1">Free Weights</h3>
+                        <p class="text-xs font-mono text-[#E6007E]">/// POWER: UNLEASHED</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Entrance / Lounge (Span 2) -->
+                <div
+                    class="group relative h-full w-full overflow-hidden border border-white/10 bg-white/5 md:col-span-2">
+                    <img src="https://cdn.prod.website-files.com/67dd34afb8ffae63ccf1f97a/681b63848c54ab0ce9827e0d_20250429_110416.jpg"
+                        alt="Lounge und Check-In Bereich" loading="lazy"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale transition-all duration-700 ease-out group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                    <div
+                        class="absolute top-4 right-4 border border-[#E6007E] px-2 py-1 text-[10px] text-[#E6007E] font-mono opacity-0 group-hover:opacity-100 transition-opacity">
+                        STATUS: ACTIVE
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-6 text-right">
+                        <h3
+                            class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase tracking-wider mb-1 opacity-80 group-hover:opacity-100 transition-all">
+                            Lobby & Check-In
+                        </h3>
+                        <p
+                            class="text-xs font-mono text-[#E6007E] opacity-0 group-hover:opacity-100 transition-opacity">
+                            /// SOCIAL_GRID: ACTIVE</p>
+                    </div>
+                </div>
+
+                <!-- Card 5: Relax Area -->
+                <div class="group relative h-full w-full overflow-hidden border border-white/10 bg-white/5">
+                    <img src="https://cdn.prod.website-files.com/67dd34afb8ffae63ccf1f97a/681b6e2e1fee02a24918537a_20250429_112153.jpg"
+                        alt="Entspannungsbereich und Wellness" loading="lazy"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale transition-all duration-700 ease-out group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 transition-opacity group-hover:opacity-60">
+                    </div>
+                    <div
+                        class="absolute top-4 left-4 w-2 h-2 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                    <div
+                        class="absolute top-4 right-4 text-xs font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity delay-100">
+                        CAM_05 [RELAX]
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 border-t border-white/10 bg-black/40 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                        <h3 class="text-xl font-bold text-white uppercase tracking-wider mb-1">Relax Area</h3>
+                        <p class="text-xs font-mono text-white">/// STRESS_LEVEL: ZERO</p>
+                    </div>
+                </div>
+
+                <!-- Card 6: Solarium (Corrected Image) -->
+                <div class="group relative h-full w-full overflow-hidden border border-white/10 bg-white/5">
+                    <img src="https://cdn.prod.website-files.com/67dd34afb8ffae63ccf1f97a/681b6e78623a7fffdea7bd16_20250429_110727.jpg"
+                        alt="Modernes Solarium" loading="lazy"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale transition-all duration-700 ease-out group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 transition-opacity group-hover:opacity-60">
+                    </div>
+                    <div
+                        class="absolute top-4 left-4 w-2 h-2 bg-[#E6007E] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                    <div
+                        class="absolute top-4 right-4 text-xs font-mono text-[#E6007E] opacity-0 group-hover:opacity-100 transition-opacity delay-100">
+                        CAM_06 [SOLARIUM]
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 border-t border-white/10 bg-black/40 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                        <h3 class="text-xl font-bold text-white uppercase tracking-wider mb-1">Solarium</h3>
+                        <p class="text-xs font-mono text-[#E6007E]">/// UV_MODULE: ONLINE</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- More Images Grid (Smaller row - Now Full Cyber) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 h-[200px]">
+
+                <!-- B1: Locker Room -->
+                <div class="group relative h-full w-full overflow-hidden border border-white/10 bg-white/5">
+                    <img src="https://cdn.prod.website-files.com/67dd34afb8ffae63ccf1f97a/681b6f8bc3f6d5c294dd869c_20250429_114111.jpg"
+                        loading="lazy" alt="Umkleideräume"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale transition-all duration-700 ease-out group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80 transition-opacity group-hover:opacity-60">
+                    </div>
+                    <div
+                        class="absolute top-2 right-2 text-[10px] font-mono text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                        CAM_07</div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-2 bg-black/50 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <span class="text-xs font-bold text-white uppercase">Locker Room</span>
+                    </div>
+                </div>
+
+                <!-- B2: Solarium 2 -->
+                <div class="group relative h-full w-full overflow-hidden border border-white/10 bg-white/5">
+                    <img src="https://cdn.prod.website-files.com/67dd34afb8ffae63ccf1f97a/681b6f0f14986661c59e75ae_20250429_113755.jpg"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale transition-all duration-700 ease-out group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80 transition-opacity group-hover:opacity-60">
+                    </div>
+                    <div
+                        class="absolute top-2 right-2 text-[10px] font-mono text-[#E6007E] opacity-0 group-hover:opacity-100 transition-opacity">
+                        CAM_08</div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-2 bg-black/50 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <span class="text-xs font-bold text-white uppercase">Relax / Sun</span>
+                    </div>
+                </div>
+
+                <!-- B3: Solarium 3 -->
+                <div class="group relative h-full w-full overflow-hidden border border-white/10 bg-white/5">
+                    <img src="https://cdn.prod.website-files.com/67dd34afb8ffae63ccf1f97a/681b672b9d58db77ea1b862d5_20250429_110810.jpg"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale transition-all duration-700 ease-out group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80 transition-opacity group-hover:opacity-60">
+                    </div>
+                    <div
+                        class="absolute top-2 right-2 text-[10px] font-mono text-[#E6007E] opacity-0 group-hover:opacity-100 transition-opacity">
+                        CAM_09</div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-2 bg-black/50 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <span class="text-xs font-bold text-white uppercase">Vitamin D</span>
+                    </div>
+                </div>
+
+                <!-- B4: Milon 2 -->
+                <div class="group relative h-full w-full overflow-hidden border border-white/10 bg-white/5">
+                    <img src="https://cdn.prod.website-files.com/67dd34afb8ffae63ccf1f97a/681b6c39a7eb0f48bb60b39b_20250429_111508.jpg"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale transition-all duration-700 ease-out group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80 transition-opacity group-hover:opacity-60">
+                    </div>
+                    <div
+                        class="absolute top-2 right-2 text-[10px] font-mono text-[#00b0f0] opacity-0 group-hover:opacity-100 transition-opacity">
+                        CAM_10</div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-2 bg-black/50 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <span class="text-xs font-bold text-white uppercase">Circuit View</span>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- CTA Footer -->
+            <div class="text-center mt-20">
+                <button class="btn-cyber group relative px-8 py-3 bg-transparent border-none cursor-pointer"
+                    style="--btn-bg: #00b0f0; --btn-hover-bg: #fff; --glow: #fff; --text: #000; --text-hover: #000;">
+                    <span
+                        class="relative z-10 font-bold uppercase tracking-wider group-hover:text-[var(--text-hover)] transition-colors duration-300">
+                        KOSTENLOSES PROBETRAINING STARTEN
+                    </span>
+                    <span
+                        class="absolute inset-0 border border-[var(--glow)] skew-x-[-10deg] opacity-70 group-hover:opacity-100 transition-all duration-300"></span>
+                    <span
+                        class="absolute inset-0 bg-[var(--glow)] opacity-0 group-hover:opacity-10 skew-x-[-10deg] transition-all duration-300"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- KURSPLAN SECTION (OPERATIONS SCHEDULE) -->
+    <section id="kursplan" class="relative w-full py-32 bg-[#050505] overflow-hidden border-t border-white/10">
+        <div
+            class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150">
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-6">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <span
+                    class="inline-block border border-[#00b0f0] px-4 py-1 skew-x-[-10deg] mb-6 text-[#00b0f0] font-mono text-sm tracking-widest uppercase bg-[#00b0f0]/10">
+                    // SYSTEM_PROTOKOLL: ACTIVE
+                </span>
+                <h2
+                    class="text-5xl md:text-7xl font-bold font-heading text-white mb-4 uppercase tracking-tighter shimmer-text">
+                    KURSPLAN
+                </h2>
+                <div class="h-1 w-24 bg-[#E6007E] mx-auto skew-x-[-20deg]"></div>
+            </div>
+
+            <!-- Filter Tabs (Miller's Law: Chunking) -->
+            <div class="flex flex-wrap justify-center gap-2 mb-12" id="day-filters">
+                <button
+                    class="filter-btn active relative px-6 py-2 border border-white/20 bg-white/5 text-white font-mono text-sm uppercase tracking-widest hover:bg-white/10 hover:border-[#00b0f0] hover:text-[#00b0f0] transition-all duration-300 skew-x-[-10deg]"
+                    data-filter="mon">
+                    <span class="block skew-x-[10deg]">MO</span>
+                </button>
+                <button
+                    class="filter-btn relative px-6 py-2 border border-white/20 bg-transparent text-gray-400 font-mono text-sm uppercase tracking-widest hover:bg-white/5 hover:border-[#00b0f0] hover:text-[#00b0f0] transition-all duration-300 skew-x-[-10deg]"
+                    data-filter="tue">
+                    <span class="block skew-x-[10deg]">DI</span>
+                </button>
+                <button
+                    class="filter-btn relative px-6 py-2 border border-white/20 bg-transparent text-gray-400 font-mono text-sm uppercase tracking-widest hover:bg-white/5 hover:border-[#00b0f0] hover:text-[#00b0f0] transition-all duration-300 skew-x-[-10deg]"
+                    data-filter="wed">
+                    <span class="block skew-x-[10deg]">MI</span>
+                </button>
+                <button
+                    class="filter-btn relative px-6 py-2 border border-white/20 bg-transparent text-gray-400 font-mono text-sm uppercase tracking-widest hover:bg-white/5 hover:border-[#00b0f0] hover:text-[#00b0f0] transition-all duration-300 skew-x-[-10deg]"
+                    data-filter="thu">
+                    <span class="block skew-x-[10deg]">DO</span>
+                </button>
+                <button
+                    class="filter-btn relative px-6 py-2 border border-white/20 bg-transparent text-gray-400 font-mono text-sm uppercase tracking-widest hover:bg-white/5 hover:border-[#00b0f0] hover:text-[#00b0f0] transition-all duration-300 skew-x-[-10deg]"
+                    data-filter="fri">
+                    <span class="block skew-x-[10deg]">FR</span>
+                </button>
+                <button
+                    class="filter-btn relative px-6 py-2 border border-white/20 bg-transparent text-gray-400 font-mono text-sm uppercase tracking-widest hover:bg-white/5 hover:border-[#00b0f0] hover:text-[#00b0f0] transition-all duration-300 skew-x-[-10deg]"
+                    data-filter="sun">
+                    <span class="block skew-x-[10deg]">SO</span>
+                </button>
+            </div>
+
+            <!-- Schedule List (Hick's Law: Minimized Complexity) -->
+            <div class="space-y-2 font-mono" id="schedule-list">
+                <!-- MONTAG -->
+                <div class="course-row group flex items-center justify-between p-4 border-b border-white/10 hover:bg-white/5 transition-all duration-300 cursor-default"
+                    data-day="mon">
+                    <div class="flex items-center gap-6">
+                        <span class="text-[#00b0f0] w-16 text-right">17:45</span>
+                        <div>
+                            <h3
+                                class="text-white font-bold uppercase tracking-wider group-hover:text-[#E6007E] transition-colors">
+                                Stretching</h3>
+                            <span class="text-xs text-gray-500 uppercase">Studio 1</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        <span class="text-xs text-gray-400 hidden md:block">ONLINE</span>
+                    </div>
+                </div>
+                <div class="course-row group flex items-center justify-between p-4 border-b border-white/10 hover:bg-white/5 transition-all duration-300 cursor-default"
+                    data-day="mon">
+                    <div class="flex items-center gap-6">
+                        <span class="text-[#00b0f0] w-16 text-right">18:45</span>
+                        <div>
+                            <h3
+                                class="text-white font-bold uppercase tracking-wider group-hover:text-[#E6007E] transition-colors">
+                                BBP</h3>
+                            <span class="text-xs text-gray-500 uppercase">Bauch Beine Po</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                        <span class="text-xs text-gray-400 hidden md:block">ONLINE</span>
+                    </div>
+                </div>
+                <div class="course-row group flex items-center justify-between p-4 border-b border-white/10 hover:bg-white/5 transition-all duration-300 cursor-default"
+                    data-day="mon">
+                    <div class="flex items-center gap-6">
+                        <span class="text-[#00b0f0] w-16 text-right">19:45</span>
+                        <div>
+                            <h3
+                                class="text-white font-bold uppercase tracking-wider group-hover:text-[#E6007E] transition-colors">
+                                Cycling</h3>
+                            <span class="text-xs text-gray-500 uppercase">Cardio Room</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                        <span class="text-xs text-gray-400 hidden md:block">ONLINE</span>
+                    </div>
+                </div>
+
+                <!-- DIENSTAG -->
+                <div class="course-row group flex items-center justify-between p-4 border-b border-white/10 hover:bg-white/5 transition-all duration-300 cursor-default"
+                    data-day="tue">
+                    <div class="flex items-center gap-6">
+                        <span class="text-[#00b0f0] w-16 text-right">17:30</span>
+                        <div>
+                            <h3
+                                class="text-white font-bold uppercase tracking-wider group-hover:text-[#E6007E] transition-colors">
+                                HIIT</h3>
+                            <span class="text-xs text-gray-500 uppercase">High Intensity</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    </div>
+                </div>
+                <div class="course-row group flex items-center justify-between p-4 border-b border-white/10 hover:bg-white/5 transition-all duration-300 cursor-default"
+                    data-day="tue">
+                    <div class="flex items-center gap-6">
+                        <span class="text-[#00b0f0] w-16 text-right">18:30</span>
+                        <div>
+                            <h3
+                                class="text-white font-bold uppercase tracking-wider group-hover:text-[#E6007E] transition-colors">
+                                Zumba</h3>
+                            <span class="text-xs text-gray-500 uppercase">Dance Workout</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    </div>
+                </div>
+                <div class="course-row group flex items-center justify-between p-4 border-b border-white/10 hover:bg-white/5 transition-all duration-300 cursor-default"
+                    data-day="tue">
+                    <div class="flex items-center gap-6">
+                        <span class="text-[#00b0f0] w-16 text-right">19:30</span>
+                        <div>
+                            <h3
+                                class="text-white font-bold uppercase tracking-wider group-hover:text-[#E6007E] transition-colors">
+                                Boxen</h3>
+                            <span class="text-xs text-gray-500 uppercase">Bis 21:00</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    </div>
+                </div>
+
+                <!-- MITTWOCH -->
+                <div class="course-row group flex items-center justify-between p-4 border-b border-white/10 hover:bg-white/5 transition-all duration-300 cursor-default"
+                    data-day="wed">
+                    <div class="flex items-center gap-6">
+                        <span class="text-[#00b0f0] w-16 text-right">18:00</span>
+                        <div>
+                            <h3
+                                class="text-white font-bold uppercase tracking-wider group-hover:text-[#E6007E] transition-colors">
+                                Rückenfit</h3>
+                            <span class="text-xs text-gray-500 uppercase">Health Focus</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    </div>
+                </div>
+                <div class="course-row group flex items-center justify-between p-4 border-b border-white/10 hover:bg-white/5 transition-all duration-300 cursor-default"
+                    data-day="wed">
+                    <div class="flex items-center gap-6">
+                        <span class="text-[#00b0f0] w-16 text-right">19:00</span>
+                        <div>
+                            <h3
+                                class="text-white font-bold uppercase tracking-wider group-hover:text-[#E6007E] transition-colors">
+                                Cycling</h3>
+                            <span class="text-xs text-gray-500 uppercase">Cardio Room</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    </div>
+                </div>
+
+                <!-- DONNERSTAG -->
+                <div class="course-row group flex items-center justify-between p-4 border-b border-white/10 hover:bg-white/5 transition-all duration-300 cursor-default"
+                    data-day="thu">
+                    <div class="flex items-center gap-6">
+                        <span class="text-[#00b0f0] w-16 text-right">18:30</span>
+                        <div>
+                            <h3
+                                class="text-white font-bold uppercase tracking-wider group-hover:text-[#E6007E] transition-colors">
+                                Boxen</h3>
+                            <span class="text-xs text-gray-500 uppercase">Bis 20:30</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    </div>
+                </div>
+
+                <!-- FREITAG -->
+                <div class="course-row group flex items-center justify-between p-4 border-b border-white/10 hover:bg-white/5 transition-all duration-300 cursor-default"
+                    data-day="fri">
+                    <div class="flex items-center gap-6">
+                        <span class="text-[#00b0f0] w-16 text-right">08:30</span>
+                        <div>
+                            <h3
+                                class="text-white font-bold uppercase tracking-wider group-hover:text-[#E6007E] transition-colors">
+                                Yoga</h3>
+                            <span class="text-xs text-gray-500 uppercase">Flow & Balance</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    </div>
+                </div>
+                <div class="course-row group flex items-center justify-between p-4 border-b border-white/10 hover:bg-white/5 transition-all duration-300 cursor-default"
+                    data-day="fri">
+                    <div class="flex items-center gap-6">
+                        <span class="text-[#00b0f0] w-16 text-right">17:30</span>
+                        <div>
+                            <h3
+                                class="text-white font-bold uppercase tracking-wider group-hover:text-[#E6007E] transition-colors">
+                                Sixpack</h3>
+                            <span class="text-xs text-gray-500 uppercase">Core Workout</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    </div>
+                </div>
+                <div class="course-row group flex items-center justify-between p-4 border-b border-white/10 hover:bg-white/5 transition-all duration-300 cursor-default"
+                    data-day="fri">
+                    <div class="flex items-center gap-6">
+                        <span class="text-[#00b0f0] w-16 text-right">18:00</span>
+                        <div>
+                            <h3
+                                class="text-white font-bold uppercase tracking-wider group-hover:text-[#E6007E] transition-colors">
+                                Langhantel</h3>
+                            <span class="text-xs text-gray-500 uppercase">Strength</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    </div>
+                </div>
+
+                <!-- SONNTAG -->
+                <div class="course-row group flex items-center justify-between p-4 border-b border-white/10 hover:bg-white/5 transition-all duration-300 cursor-default"
+                    data-day="sun">
+                    <div class="flex items-center gap-6">
+                        <span class="text-[#00b0f0] w-16 text-right">11:00</span>
+                        <div>
+                            <h3
+                                class="text-white font-bold uppercase tracking-wider group-hover:text-[#E6007E] transition-colors">
+                                Full Body Workout</h3>
+                            <span class="text-xs text-gray-500 uppercase">Total Intensity</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                // Inline Script for Instant Interactivity (Doherty Threshold)
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.addEventListener('click', function () {
+                        // 1. Update Active State
+                        document.querySelectorAll('.filter-btn').forEach(b => {
+                            b.classList.remove('bg-white/5', 'text-white', 'border-[#00b0f0]');
+                            b.classList.add('bg-transparent', 'text-gray-400');
+                        });
+                        this.classList.remove('bg-transparent', 'text-gray-400');
+                        this.classList.add('bg-white/5', 'text-white', 'border-[#00b0f0]');
+
+                        // 2. Filter Rows
+                        const filter = this.getAttribute('data-filter');
+                        const rows = document.querySelectorAll('.course-row');
+
+                        rows.forEach(row => {
+                            if (filter === 'all' || row.getAttribute('data-day') === filter) {
+                                row.style.display = 'flex';
+                                // Simple fade in
+                                row.style.opacity = '0';
+                                setTimeout(() => row.style.opacity = '1', 10);
+                            } else {
+                                row.style.display = 'none';
+                            }
+                        });
+                    });
+                });
+
+                // Initialize: Trigger click on the active filter or default to 'mon'
+                document.addEventListener('DOMContentLoaded', () => {
+                    const activeBtn = document.querySelector('.filter-btn.active');
+                    if (activeBtn) {
+                        activeBtn.click();
+                    } else {
+                        const monBtn = document.querySelector('[data-filter="mon"]');
+                        if (monBtn) monBtn.click();
+                    }
+                });
+            </script>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION (MEMBERSHIP UPLINK) -->
+    <section id="preise" class="relative w-full py-32 bg-[#050505] overflow-hidden border-t border-white/10">
+        <!-- Background Noise -->
+        <div
+            class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150">
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <span
+                    class="inline-block border border-[#E6007E] px-4 py-1 skew-x-[-10deg] mb-6 text-[#E6007E] font-mono text-sm tracking-widest uppercase bg-[#E6007E]/10">
+                    // SYSTEM_ACCESS: LEVEL_SELECT
+                </span>
+                <h2
+                    class="text-5xl md:text-7xl font-bold font-heading text-white mb-4 uppercase tracking-tighter shimmer-text">
+                    MEMBERSHIP
+                </h2>
+                <div class="h-1 w-24 bg-[#00b0f0] mx-auto skew-x-[-20deg]"></div>
+            </div>
+
+            <!-- Pricing Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- BASIC TIER -->
+                <div
+                    class="group relative p-8 bg-white/5 border border-white/10 hover:border-[#00b0f0] transition-colors duration-300 backdrop-blur-sm rounded-sm h-full flex flex-col">
+                    <!-- Hover Glow -->
+                    <div
+                        class="absolute inset-0 bg-[#00b0f0]/0 group-hover:bg-[#00b0f0]/5 transition-colors duration-300 pointer-events-none">
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-white mb-2 tracking-widest uppercase font-heading">BASIC</h3>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-4xl font-bold text-[#00b0f0] font-mono">29,90</span>
+                        <span class="text-xl text-gray-400">€ / mtl.</span>
+                    </div>
+                    <div class="mb-8 p-3 bg-white/5 border border-white/10 rounded text-center">
+                        <span class="block text-xs text-gray-400 uppercase tracking-wider mb-1">Student / Schüler</span>
+                        <span class="block text-lg font-bold text-white font-mono">24,90 €</span>
+                    </div>
+
+                    <ul class="space-y-4 mb-8 text-sm text-gray-300 font-mono flex-grow">
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#00b0f0] text-sm">check_circle</span>
+                            <span>Gerätepark & Cardio</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#00b0f0] text-sm">check_circle</span>
+                            <span>Milon Zirkel</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#00b0f0] text-sm">check_circle</span>
+                            <span>Freihantelbereich</span>
+                        </li>
+                        <li class="flex items-center gap-3 opacity-50">
+                            <span class="material-symbols-outlined text-gray-600 text-sm">cancel</span>
+                            <span>Kurse & Wellness</span>
+                        </li>
+                    </ul>
+
+                    <button
+                        class="w-full py-4 border border-[#00b0f0] text-[#00b0f0] font-bold uppercase tracking-widest hover:bg-[#00b0f0] hover:text-black transition-all duration-300 skew-x-[-10deg] hover:scale-[1.02] mt-auto">
+                        <span class="block skew-x-[10deg]">INITIEREN</span>
+                    </button>
+                    <p class="text-center text-xs text-gray-600 mt-4 mx-auto w-full">Laufzeit: 12 Monate</p>
+                </div>
+
+                <!-- ALL-IN TIER (FEATURED) -->
+                <div
+                    class="group relative p-8 bg-white/5 border border-[#E6007E] shadow-[0_0_30px_rgba(230,0,126,0.1)] hover:shadow-[0_0_40px_rgba(230,0,126,0.2)] transition-all duration-300 backdrop-blur-md rounded-sm h-full flex flex-col hover:-translate-y-1">
+                    <div
+                        class="absolute top-0 right-0 bg-[#E6007E] text-white text-xs font-bold px-3 py-1 uppercase tracking-widest transform translate-x-2 -translate-y-2 skew-x-[-10deg]">
+                        Popular System
+                    </div>
+
+                    <h3 class="text-3xl font-bold text-white mb-2 tracking-widest uppercase font-heading">ALL-IN</h3>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-5xl font-bold text-[#E6007E] font-mono">40,00</span>
+                        <span class="text-xl text-gray-400">€ / mtl.</span>
+                    </div>
+
+                    <ul class="space-y-4 mb-8 text-sm text-gray-300 font-mono flex-grow">
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#E6007E] text-sm">check_circle</span>
+                            <span class="font-bold text-white">Alles aus Basic</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#E6007E] text-sm">check_circle</span>
+                            <span>Alle Kurse Inklusive</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#E6007E] text-sm">check_circle</span>
+                            <span>Sauna Wellness Access</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#E6007E] text-sm">check_circle</span>
+                            <span>Solarium Flatrate</span>
+                        </li>
+                    </ul>
+
+                    <button
+                        class="w-full py-4 bg-[#E6007E] text-white font-bold uppercase tracking-widest hover:bg-[#ff008c] hover:scale-[1.02] shadow-[0_0_20px_rgba(230,0,126,0.5)] transition-all duration-300 skew-x-[-10deg] mt-auto">
+                        <span class="block skew-x-[10deg]">VOLLZUGRIFF</span>
+                    </button>
+                    <p class="text-center text-xs text-gray-500 mt-4 mx-auto w-full">Laufzeit: 12 Monate</p>
+                </div>
+
+                <!-- FLEX TIER -->
+                <div
+                    class="group relative p-8 bg-white/5 border border-white/10 hover:border-[#00b0f0] transition-colors duration-300 backdrop-blur-sm rounded-sm h-full flex flex-col">
+                    <h3 class="text-2xl font-bold text-white mb-2 tracking-widest uppercase font-heading">FLEX</h3>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-4xl font-bold text-white font-mono">50,00</span>
+                        <span class="text-xl text-gray-400">€ / mtl.</span>
+                    </div>
+
+                    <ul class="space-y-4 mb-8 text-sm text-gray-300 font-mono flex-grow">
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-white text-sm">check_circle</span>
+                            <span>Monatlich Kündbar</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-white text-sm">check_circle</span>
+                            <span>Full All-In Access</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-white text-sm">check_circle</span>
+                            <span>Maximale Flexibilität</span>
+                        </li>
+                        <li class="flex items-center gap-3 opacity-50">
+                            <span class="material-symbols-outlined text-gray-600 text-sm">block</span>
+                            <span>Keine Laufzeitbindung</span>
+                        </li>
+                    </ul>
+
+                    <button
+                        class="w-full py-4 border border-white text-white font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 skew-x-[-10deg] hover:scale-[1.02] mt-auto">
+                        <span class="block skew-x-[10deg]">FREISCHALTEN</span>
+                    </button>
+                    <p class="text-center text-xs text-gray-600 mt-4 mx-auto w-full">Laufzeit: 1 Monat</p>
+                </div>
+            </div>
+
+            <!-- Add-Ons Modular Panel -->
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-white/10 pt-12">
+                <div class="p-4 flex justify-between items-center border border-white/5 bg-white/[0.02]">
+                    <span class="text-sm font-mono text-gray-400 uppercase">10er Karte All-In</span>
+                    <span class="text-white font-bold font-mono">90 €</span>
+                </div>
+                <div class="p-4 flex justify-between items-center border border-white/5 bg-white/[0.02]">
+                    <span class="text-sm font-mono text-gray-400 uppercase">10er Karte Boxen</span>
+                    <span class="text-white font-bold font-mono">75 €</span>
+                </div>
+                <div class="p-4 flex justify-between items-center border border-white/5 bg-white/[0.02]">
+                    <span class="text-sm font-mono text-gray-400 uppercase">Kurs-Flatrate</span>
+                    <span class="text-white font-bold font-mono">35 € / mtl</span>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bg-black border-t border-white/10 py-12">
+            <div
+                class="max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
+                    <span class="material-symbols-outlined text-xl">fitness_center</span>
+                    <span class="font-bold tracking-widest">DRENSTEINFURT</span>
+                </div>
+                <div class="text-gray-600 text-sm">
+                    © 2025 Fitness Center Drensteinfurt. All systems go.
+                </div>
+                <div class="flex gap-6">
+                    <a class="text-gray-500 hover:text-primary transition-colors" href="#"
+                        aria-label="E-Mail Kontakt"><span class="material-symbols-outlined">alternate_email</span></a>
+                    <a class="text-gray-500 hover:text-accent-pink transition-colors" href="#"
+                        aria-label="Instagram Profil"><span class="material-symbols-outlined">camera_alt</span></a>
+                </div>
+            </div>
+        </footer>
+        <style>
+            @keyframes scan {
+                0% {
+                    transform: translateY(-100%);
+                }
+
+                100% {
+                    transform: translateY(100%);
+                }
+            }
+
+            /* Rotating Border Animation */
+            .animated-border {
+                position: relative;
+                z-index: 0;
+                overflow: hidden;
+                /* Ensure content stays inside */
+            }
+
+            .animated-border::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                /* Gradient from Blue (#00b0f0) to Pink (#E6007E) */
+                background: conic-gradient(transparent 180deg, #00b0f0 270deg, #E6007E 360deg);
+                animation: rotate-border 4s linear infinite;
+                z-index: -2;
+            }
+
+            .animated-border::after {
+                content: '';
+                position: absolute;
+                inset: 2px;
+                /* Border width gap */
+                background: inherit;
+                /* Inherit bg from parent (e.g. black) */
+                border-radius: inherit;
+                z-index: -1;
+            }
+
+            /* CYBER BUTTON - ROBUST & NEW */
+            .btn-cyber {
+                position: relative;
+                isolation: isolate;
+                overflow: hidden;
+                background: transparent !important;
+                color: var(--text, white);
+                transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            .btn-cyber:hover {
+                color: var(--text-hover, white);
+                transform: skewX(-10deg) scale(1.05);
+            }
+
+            .btn-cyber:active {
+                transform: skewX(-10deg) scale(0.95);
+            }
+
+            /* The Rotating Neon Glow */
+            .btn-cyber::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: conic-gradient(from 0deg, transparent 0deg, var(--glow) 180deg, transparent 360deg);
+                animation: rotate-border 1s linear infinite;
+                z-index: -2;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .btn-cyber:hover::before {
+                opacity: 1;
+            }
+
+            /* The Button Background */
+            .btn-cyber::after {
+                content: '';
+                position: absolute;
+                inset: 2px;
+                background: var(--btn-bg);
+                border-radius: 2px;
+                z-index: -1;
+                transition: background 0.3s ease;
+            }
+
+            .btn-cyber:hover::after {
+                background: var(--btn-hover-bg);
+            }
+
+            /* Custom adjustment for the skewed button provided it's solid color */
+
+            @keyframes rotate-border {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+        <!-- GSAP for High-End Animations -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", (event) => {
+                gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+                // --- 0. INITIAL SETUP (Hide page until intro) ---
+                gsap.set(".navbar-container", { y: -100, opacity: 0 });
+                gsap.set(".bg-cyber-grid", { opacity: 0 });
+                gsap.set(".hero-content > *", { x: -50, opacity: 0 });
+                gsap.set(".hero-hud", { scale: 0.8, opacity: 0, rotationX: 10 });
+
+                // --- 1. INTRO OVERLAY TIMELINE ---
+                // --- 1. INTRO OVERLAY TIMELINE (KINETIC SPARK) ---
+                const introTl = gsap.timeline({
+                    onComplete: () => {
+                        initMainAnimations();
+                    }
+                });
+
+                const kineticTexts = document.querySelectorAll(".kinetic-text");
+                const logoContainer = document.querySelector("#intro-logo-container");
+
+                // Kinetic Sequence
+                kineticTexts.forEach((text, i) => {
+                    introTl.fromTo(text,
+                        { opacity: 0, scale: 0.5, filter: "blur(20px)" },
+                        {
+                            opacity: 1,
+                            scale: 1,
+                            filter: "blur(0px)",
+                            duration: 0.4,
+                            ease: "expo.out"
+                        }
+                    );
+
+                    // Progress bar sync
+                    introTl.to("#intro-progress", {
+                        width: `${((i + 1) / (kineticTexts.length + 1)) * 100}%`,
+                        duration: 0.4
+                    }, "<");
+
+                    introTl.to(text, {
+                        opacity: 0,
+                        scale: 1.5,
+                        duration: 0.3,
+                        ease: "expo.in"
+                    }, "+=0.2");
+                });
+
+                // Logo Reveal "Explosion"
+                introTl.to(logoContainer, {
+                    opacity: 1,
+                    scale: 1,
+                    filter: "blur(0px)",
+                    duration: 0.8,
+                    ease: "elastic.out(1, 0.5)",
+                    onStart: () => {
+                        // Flash effect on overlay
+                        gsap.fromTo("#intro-overlay",
+                            { backgroundColor: "#333" },
+                            { backgroundColor: "#000", duration: 0.5 }
+                        );
+                    }
+                }, "-=0.2");
+
+                introTl.to("#intro-progress", { width: "100%", duration: 0.6 }, "<");
+
+                // Exit Intro Overlay
+                introTl.to("#intro-overlay", {
+                    yPercent: -100,
+                    ease: "expo.inOut",
+                    duration: 1.2
+                }, "+=0.8");
+
+                // --- 2. MAIN PAGE ANIMATION SYSTEM ---
+                function initMainAnimations() {
+                    const mainTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+                    mainTl
+                        // Phase 1: Grid & Environment
+                        .to(".bg-cyber-grid", {
+                            opacity: 0.2,
+                            duration: 2,
+                            ease: "rough({strength: 1, points: 20})"
+                        })
+                        // Phase 2: Navigation
+                        .to(".navbar-container", { y: 0, opacity: 1, duration: 0.8 }, "-=1.5")
+                        // Phase 3: The "Boot Up" (HUD)
+                        .to(".hero-hud", {
+                            scale: 1,
+                            opacity: 1,
+                            rotationX: 0,
+                            duration: 0.8,
+                            ease: "back.out(1.7)"
+                        }, "-=0.5")
+                        // Phase 4: Content
+                        .to(".hero-content > *", {
+                            x: 0,
+                            opacity: 1,
+                            stagger: 0.1,
+                            duration: 0.8
+                        }, "-=0.4")
+                        .call(() => startRetroEcho());
+
+                    // Start loops that were previously auto-starting
+                    startGlitchLoop();
+                    startAuraAnimation();
+                }
+
+                // --- 2.2 RETRO ECHO ANIMATION ---
+                function startRetroEcho() {
+                    const cyan = document.querySelector(".hero-echo-cyan");
+                    const pink = document.querySelector(".hero-echo-pink");
+                    if (!cyan || !pink) return;
+
+                    // Reveal layers
+                    gsap.to([cyan, pink], { opacity: 0.5, duration: 2, ease: "power2.out" });
+
+                    // Continuous Jitter Loop for Cyan
+                    gsap.to(cyan, {
+                        x: -15,
+                        duration: 0.04,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "none",
+                    });
+
+                    // Continuous Jitter Loop for Pink
+                    gsap.to(pink, {
+                        x: 15,
+                        duration: 0.05,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "none",
+                    });
+
+                    // Subtle Scale Pulse
+                    gsap.to([cyan, pink], {
+                        scale: 1.04,
+                        duration: 2,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut"
+                    });
+                }
+
+
+
+
+                // --- 3. TEXT GLITCH LOGIC ---
+                function startGlitchLoop() {
+                    const textElement = document.getElementById("glitch-target");
+                    if (textElement) {
+                        const words = ["STÄRKER", "FITTER", "GESÜNDER"];
+                        let wordIndex = 0;
+
+                        function runGlitchEffect(element, newText, duration = 600) {
+                            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                            const originalText = newText;
+                            const startTime = Date.now();
+
+                            function update() {
+                                const elapsed = Date.now() - startTime;
+                                const progress = elapsed / duration;
+
+                                if (progress < 1) {
+                                    let scrambled = "";
+                                    for (let i = 0; i < originalText.length; i++) {
+                                        if (originalText[i] === " ") {
+                                            scrambled += " ";
+                                        } else {
+                                            scrambled += (Math.random() > progress)
+                                                ? chars[Math.floor(Math.random() * chars.length)]
+                                                : originalText[i];
+                                        }
+                                    }
+                                    element.innerText = scrambled;
+                                    requestAnimationFrame(update);
+                                } else {
+                                    element.innerText = originalText;
+                                }
+                            }
+                            update();
+                        }
+
+                        function glitchText() {
+                            wordIndex = (wordIndex + 1) % words.length;
+                            runGlitchEffect(textElement, words[wordIndex]);
+                            gsap.delayedCall(3, glitchText);
+                        }
+                        glitchText();
+                    }
+                }
+
+                // --- 4. CYBER AURA LOGIC (CANVAS OPTIMIZED) ---
+                function startAuraAnimation() {
+                    const canvas = document.getElementById("hero-aura");
+                    if (!canvas) return;
+                    const ctx = canvas.getContext("2d");
+                    const simplex = new SimplexNoise();
+
+                    let w, h;
+                    const resize = () => {
+                        w = canvas.width = window.innerWidth;
+                        h = canvas.height = window.innerHeight;
+                    };
+                    window.addEventListener("resize", resize);
+                    resize();
+
+                    const blobCount = 10;
+                    const blobs = [];
+                    for (let i = 0; i < blobCount; i++) {
+                        blobs.push({
+                            x: Math.random() * w,
+                            y: Math.random() * h,
+                            size: gsap.utils.random(500, 1000),
+                            color: Math.random() > 0.5 ? "rgba(230, 0, 126, 0.4)" : "rgba(0, 176, 240, 0.4)",
+                            offset: Math.random() * 1000
+                        });
+                    }
+
+                    let lastTime = 0;
+                    const fps = 60;
+                    const interval = 1000 / fps;
+
+                    function animate(timestamp) {
+                        if (!lastTime) lastTime = timestamp;
+                        const elapsed = timestamp - lastTime;
+
+                        if (elapsed > interval) {
+                            lastTime = timestamp - (elapsed % interval);
+                            const time = Date.now() * 0.0002;
+
+                            ctx.clearRect(0, 0, w, h);
+
+                            blobs.forEach(blob => {
+                                const nX = simplex.noise2D(blob.offset, time * 0.1);
+                                const nY = simplex.noise2D(blob.offset + 100, time * 0.1);
+                                const nOpacity = simplex.noise2D(blob.offset + 200, time * 0.05);
+
+                                const x = blob.x + nX * (w * 0.15);
+                                const y = blob.y + nY * (h * 0.15);
+                                const opacity = Math.max(0.1, 0.2 + (nOpacity * 0.2));
+
+                                const grad = ctx.createRadialGradient(x, y, 0, x, y, blob.size);
+                                grad.addColorStop(0, blob.color.replace("0.4", opacity.toFixed(2)));
+                                grad.addColorStop(1, "transparent");
+
+                                ctx.fillStyle = grad;
+                                ctx.beginPath();
+                                ctx.arc(x, y, blob.size, 0, Math.PI * 2);
+                                ctx.fill();
+                            });
+                        }
+                        requestAnimationFrame(animate);
+                    }
+                    requestAnimationFrame(animate);
+                }
+
+
+
+                // --- 6. DYNAMIC GYM STATUS ---
+                function updateGymStatus() {
+                    const statusText = document.getElementById("status-text");
+                    const statusIndicator = document.getElementById("status-indicator");
+                    if (!statusText || !statusIndicator) return;
+
+                    const now = new Date();
+                    const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+                    const hour = now.getHours();
+                    const minute = now.getMinutes();
+                    const currentTime = hour + minute / 60;
+
+                    let isOpen = false;
+
+                    if (day >= 1 && day <= 5) { // Monday - Friday
+                        if (currentTime >= 8 && currentTime < 22) isOpen = true;
+                    } else { // Weekend (Saturday & Sunday)
+                        if (currentTime >= 10 && currentTime < 18) isOpen = true;
+                    }
+
+                    if (isOpen) {
+                        statusText.innerText = "Gym ist geöffnet";
+                        statusText.className = "text-xs text-green-400 uppercase tracking-widest font-bold";
+                        statusIndicator.className = "size-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.8)]";
+                    } else {
+                        statusText.innerText = "Gym ist gerade geschlossen";
+                        statusText.className = "text-xs text-red-500 uppercase tracking-widest font-bold";
+                        statusIndicator.className = "size-2 bg-red-600 rounded-full shadow-[0_0_10px_rgba(220,38,38,0.8)]";
+                    }
+                }
+
+                updateGymStatus();
+                // Check every minute
+                setInterval(updateGymStatus, 60000);
+            });
+        </script>
+</body>
+
+</html>
