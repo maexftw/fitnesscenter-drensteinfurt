@@ -200,6 +200,7 @@
 </head>
 
 <body class="bg-black text-white font-display overflow-x-hidden selection:bg-accent-pink selection:text-white">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-black focus:text-[#00b0f0] focus:border focus:border-[#00b0f0] focus:font-bold focus:uppercase focus:outline-none">Zum Inhalt springen</a>
     <!-- --- INTRO OVERLAY --- -->
 
     <!-- PRELOAD HERO IMAGE to avoid flicker -->
@@ -286,7 +287,7 @@
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu"
         class="fixed inset-0 z-[2000] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-500">
-        <button id="close-menu" class="absolute top-6 right-6 text-white hover:text-primary transition-colors">
+        <button id="close-menu" aria-label="Menü schließen" class="absolute top-6 right-6 text-white hover:text-primary transition-colors">
             <span class="material-symbols-outlined text-4xl">close</span>
         </button>
         <nav class="flex flex-col items-center gap-8">
@@ -302,7 +303,7 @@
     </div>
 
     <!-- Hero Section -->
-    <div class="relative w-full min-h-[90vh] flex flex-col justify-center overflow-hidden">
+    <div id="main-content" class="relative w-full min-h-[90vh] flex flex-col justify-center overflow-hidden">
         <!-- Background with Overlay -->
         <div class="absolute inset-0 z-0 bg-black">
             <!-- 1. RETRO ECHO LAYERS (RGB Split Highlight) -->
@@ -1603,8 +1604,32 @@
                 updateGymStatus();
                 // Check every minute
                 setInterval(updateGymStatus, 60000);
+                // --- 8. BACK TO TOP LOGIC ---
+                const backToTopBtn = document.getElementById('back-to-top');
+                if (backToTopBtn) {
+                    window.addEventListener('scroll', () => {
+                        if (window.scrollY > 500) {
+                            backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                            backToTopBtn.classList.add('opacity-100', 'pointer-events-auto');
+                        } else {
+                            backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                            backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+                        }
+                    });
+
+                    backToTopBtn.addEventListener('click', () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                }
+
             });
         </script>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Nach oben scrollen" class="fixed bottom-8 right-8 w-12 h-12 rounded-full border border-[#E6007E] bg-black/80 text-[#E6007E] flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 z-50 hover:bg-[#E6007E] hover:text-white hover:shadow-[0_0_20px_rgba(230,0,126,0.6)] focus:opacity-100 focus:pointer-events-auto">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+
 </body>
 
 </html>
