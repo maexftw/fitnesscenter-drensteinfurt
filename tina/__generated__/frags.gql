@@ -1,0 +1,15 @@
+fragment PageParts on Page {
+  __typename
+  title
+  heroHeadline1
+  heroHeadline2
+  heroSubheadline
+  pricing {
+    __typename
+    name
+    featured
+    price
+    period
+    features
+  }
+}

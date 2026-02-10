@@ -1,0 +1,39 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+    description?: string;
+}
+
+const { title, description = "Erreiche deine Fitnessziele im Fitness Center Drensteinfurt. Milon Zirkel, Krafttraining, Kurse und Wellness in modernster Cyberpunk-Atmosphäre." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="de" class="dark scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={new URL("/hero-bg.jpg", Astro.url)} />
+
+		<title>{title}</title>
+	</head>
+	<body class="bg-black text-white font-display overflow-x-hidden selection:bg-accent-pink selection:text-white">
+		<slot />
+	</body>
+</html>

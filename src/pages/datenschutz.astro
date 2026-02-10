@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Datenschutzerklärung | Fitness Center Drensteinfurt">
+    <div class="min-h-screen bg-black text-white font-sans p-8 flex flex-col items-center justify-center relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-cyber-grid bg-[length:40px_40px] opacity-10 pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-4xl w-full mt-20 bg-white/5 p-8 border border-white/10 backdrop-blur-sm rounded-sm">
+            <h1 class="text-4xl font-bold mb-8 text-accent-pink font-heading uppercase tracking-widest">Datenschutzerklärung</h1>
+
+            <div class="space-y-8 font-mono text-gray-300 leading-relaxed">
+                <div>
+                    <h2 class="text-xl font-bold text-white mb-2 uppercase">1. Datenschutz auf einen Blick</h2>
+                    <h3 class="text-lg font-semibold text-primary mb-2">Allgemeine Hinweise</h3>
+                    <p class="mb-4">Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.</p>
+                </div>
+
+                <div>
+                    <h2 class="text-xl font-bold text-white mb-2 uppercase">2. Hosting</h2>
+                    <p class="mb-4">Wir hosten die Inhalte unserer Website bei folgenden Anbietern: <strong>GitHub Pages</strong></p>
+                </div>
+
+                <div>
+                    <h2 class="text-xl font-bold text-white mb-2 uppercase">3. Allgemeine Hinweise und Pflichtinformationen</h2>
+                    <h3 class="text-lg font-semibold text-primary mb-2">Datenschutz</h3>
+                    <p class="mb-4">Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-primary mb-2">Hinweis zur verantwortlichen Stelle</h3>
+                    <p class="mb-4">Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:<br>
+                    <strong>Fitness Center Drensteinfurt</strong><br>
+                    Musterstraße 1<br>
+                    48317 Drensteinfurt</p>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-white/10">
+                <a href="/" class="inline-flex items-center gap-2 text-primary hover:text-white transition-colors font-bold uppercase tracking-wider group">
+                    <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                    Zurück zur Startseite
+                </a>
+            </div>
+        </div>
+    </div>
+</Layout>

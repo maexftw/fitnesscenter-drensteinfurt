@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #00b0f0;
+  --color-accent-pink: #E6007E;
+  --color-background-light: #f5f8f8;
+  --color-background-dark: #000000;
+  --color-surface-dark: #0a0a0a;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Noto Sans", sans-serif;
+
+  --background-image-cyber-grid: linear-gradient(rgba(0, 176, 240, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 176, 240, 0.05) 1px, transparent 1px);
+
+  --shadow-neon-blue: 0 0 10px rgba(0, 176, 240, 0.5), 0 0 20px rgba(0, 176, 240, 0.3);
+  --shadow-neon-pink: 0 0 10px rgba(230, 0, 126, 0.5), 0 0 20px rgba(230, 0, 126, 0.3);
+
+  --animate-gradient: gradient 8s linear infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+  --animate-scan: scan 4s linear infinite;
+  --animate-rotate-border: rotate-border 4s linear infinite;
+
+  @keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+
+  @keyframes rotate-border {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-black text-white font-display overflow-x-hidden selection:bg-accent-pink selection:text-white;
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .bg-300\% {
+    background-size: 300% 300%;
+  }
+
+  .text-stroke-1 {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #000;
+}
+::-webkit-scrollbar-thumb {
+    background: #333;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #00b0f0;
+}
+
+/* Intro Overlay */
+#intro-overlay {
+    background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+}
+
+.terminal-line {
+    display: block;
+    margin-bottom: 0.25rem;
+    opacity: 0.8;
+}
+
+.terminal-line.success {
+    color: #E6007E;
+    text-shadow: 0 0 10px rgba(230, 0, 126, 0.8);
+}
+
+.scanline {
+    box-shadow: 0 0 15px rgba(0, 176, 240, 0.5);
+    z-index: 1001;
+    will-change: top;
+}
+
+#hero-aura {
+    will-change: transform, opacity;
+    pointer-events: none;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.hero-hud,
+.navbar-container,
+.hero-content {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.shimmer-text {
+    background: linear-gradient(90deg, #fff 0%, #00b0f0 10%, #fff 20%);
+    background-size: 200% auto;
+    color: white;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(0, 176, 240, 0.4));
+        opacity: 0.8;
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(0, 176, 240, 0.8));
+        opacity: 1;
+    }
+}
+
+@keyframes color-spin {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(0, 176, 240, 0.8)) drop-shadow(0 0 15px rgba(230, 0, 126, 0.5));
+        transform: scale(1.02);
+    }
+    50% {
+        filter: drop-shadow(0 0 15px rgba(0, 176, 240, 1)) drop-shadow(0 0 30px rgba(230, 0, 126, 0.8));
+        transform: scale(1.03);
+    }
+}
+
+@keyframes echo-pulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1.02);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.03);
+    }
+}
+
+/* Rotating Border Animation */
+.animated-border {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.animated-border::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent 180deg, #00b0f0 270deg, #E6007E 360deg);
+    animation: rotate-border 4s linear infinite;
+    z-index: -2;
+}
+
+.animated-border::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: inherit;
+    border-radius: inherit;
+    z-index: -1;
+}
+
+/* CYBER BUTTON */
+.btn-cyber {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: transparent !important;
+    color: var(--text, white);
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-cyber:hover {
+    color: var(--text-hover, white);
+    transform: skewX(-10deg) scale(1.05);
+}
+
+.btn-cyber:active {
+    transform: skewX(-10deg) scale(0.95);
+}
+
+.btn-cyber::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent 0deg, var(--glow) 180deg, transparent 360deg);
+    animation: rotate-border 1s linear infinite;
+    z-index: -2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn-cyber:hover::before {
+    opacity: 1;
+}
+
+.btn-cyber::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: var(--btn-bg);
+    border-radius: 2px;
+    z-index: -1;
+    transition: background 0.3s ease;
+}
+
+.btn-cyber:hover::after {
+    background: var(--btn-hover-bg);
+}
