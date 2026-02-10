@@ -1,0 +1,15 @@
+exclude:
+  - node_modules
+  - src
+  - tina
+  - public
+  - dist
+  - .astro
+  - package.json
+  - package-lock.json
+  - README.md
+  - tsconfig.json
+  - astro.config.mjs
+  - .gitignore
+  - .github
+  - .vscode

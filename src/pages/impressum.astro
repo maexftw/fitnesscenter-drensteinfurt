@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Impressum | Fitness Center Drensteinfurt">
+    <div class="min-h-screen bg-black text-white font-sans p-8 flex flex-col items-center justify-center relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-cyber-grid bg-[length:40px_40px] opacity-10 pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-2xl w-full mt-20 bg-white/5 p-8 border border-white/10 backdrop-blur-sm rounded-sm">
+            <h1 class="text-4xl font-bold mb-8 text-primary font-heading uppercase tracking-widest">Impressum</h1>
+
+            <div class="space-y-6 font-mono text-gray-300">
+                <div>
+                    <h2 class="text-lg font-bold text-white mb-2 uppercase">Angaben gemäß § 5 TMG</h2>
+                    <p>Fitness Center Drensteinfurt<br>Musterstraße 1<br>48317 Drensteinfurt</p>
+                </div>
+
+                <div>
+                    <h2 class="text-lg font-bold text-white mb-2 uppercase">Vertreten durch:</h2>
+                    <p>Max Mustermann</p>
+                </div>
+
+                <div>
+                    <h2 class="text-lg font-bold text-white mb-2 uppercase">Kontakt:</h2>
+                    <p>Telefon: 01234-56789<br>E-Mail: <a href="mailto:info@fitnesscenter-drensteinfurt.de" class="text-primary hover:text-white transition-colors">info@fitnesscenter-drensteinfurt.de</a></p>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-white/10">
+                <a href="/" class="inline-flex items-center gap-2 text-accent-pink hover:text-white transition-colors font-bold uppercase tracking-wider group">
+                    <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                    Zurück zur Startseite
+                </a>
+            </div>
+        </div>
+    </div>
+</Layout>
